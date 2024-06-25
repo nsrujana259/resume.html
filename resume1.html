@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        body {
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        form {
+            background-color: pink;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        input, textarea, button {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: pink;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .resume-container {
+            background-color: lightyellow;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .resume-photo {
+            border: 4px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume</h1>
+        <form id="resumeForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone"><br><br>
+
+            <label for="education">Education:</label>
+            <input type="text" id="education" name="education"><br><br>
+
+            <label for="workExperience">Work Experience:</label>
+            <input type="text" id="workExperience" name="workExperience"><br><br>
+
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" name="skills"><br><br>
+
+            <label for="projects">Projects:</label>
+            <input type="text" id="projects" name="projects"><br><br>
+
+            <label for="certifications">Certifications:</label>
+            <input type="text" id="certifications" name="certifications"><br><br>
+
+            <label for="awards">Awards:</label>
+            <input type="text" id="awards" name="awards"><br>
+
+            <label for="activities">Extracurricular Activities:</label>
+            <input type="text" id="activities" name="activities"><br>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo"><br><br>
+
+            <button type="button" onclick="previewResume()">Preview Resume</button>
+            <button type="submit">Download Resume</button>
+        </form>
+
+        <form action="generated_output_page.html" method="post" target="_blank"></form>
+
+        <div id="previewSection" style="display: none;" class="resume-container">
+            <div class="circle">
+                <img id="previewPhoto" src="#" alt="Uploaded Photo">
+            </div>
+            <h2>Preview</h2>
+            <p id="previewFullName"></p>
+            <p id="previewEmail"></p>
+            <p id="previewPhoneNumber"></p>
+            <p id="previewEducation"></p>
+            <p id="previewWorkExperience"></p>
+            <p id="previewSkills"></p>
+            <p id="previewProjects"></p>
+            <p id="previewCertifications"></p>
+            <p id="previewAwards"></p>
+            <p id="previewExtracurricularActivities"></p>
+        </div>
+    </div>
+
+    <script>
+        function previewResume() {
+            document.getElementById("previewFullName").innerText = "Full Name: " + document.getElementById("fullName").value;
+            document.getElementById("previewEmail").innerText = "Email: " + document.getElementById("email").value;
+            document.getElementById("previewPhoneNumber").innerText = "Phone Number: " + document.getElementById("phone").value;
+            document.getElementById("previewEducation").innerText = "Education: " + document.getElementById("education").value;
+            document.getElementById("previewWorkExperience").innerText = "Work Experience: " + document.getElementById("workExperience").value;
+            document.getElementById("previewSkills").innerText = "Skills: " + document.getElementById("skills").value;
+            document.getElementById("previewProjects").innerText = "Projects: " + document.getElementById("projects").value;
+            document.getElementById("previewCertifications").innerText = "Certifications: " + document.getElementById("certifications").value;
+            document.getElementById("previewAwards").innerText = "Awards: " + document.getElementById("awards").value;
+            document.getElementById("previewExtracurricularActivities").innerText = "Extracurricular Activities: " + document.getElementById("activities").value;
+
+            const file = document.getElementById("photo").files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("previewPhoto").src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+
+            document.getElementById("previewSection").style.display = "block";
+        }
+    </script>
+</body>
+</html>
